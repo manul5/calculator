@@ -8,4 +8,11 @@ function initNumbers() {
     });
 }
 
+function initAC() {
+    ac = document.querySelector('#ac')
+    display = document.querySelector('.display')
+    ac.addEventListener('click', () => display.textContent = '')
+}
+
 initNumbers()
+initAC()
