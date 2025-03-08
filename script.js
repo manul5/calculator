@@ -1,3 +1,5 @@
+let countOperator = false
+
 function initNumbers() {
     const numbers = document.querySelectorAll('.number')
     const display = document.querySelector('.display')
@@ -10,20 +12,45 @@ function initNumbers() {
 function initAC() {
     const ac = document.querySelector('#ac')
     const display = document.querySelector('.display')
-    ac.addEventListener('click', () => display.textContent = '')
+    ac.addEventListener('click', () => {
+        countOperator = false
+        display.textContent = ''
+    })
 }
 
 function initDel() {
     const del = document.querySelector('.del')
     const display = document.querySelector('.display')
-    del.addEventListener('click', () => display.textContent = display.innerText.slice(0, display.innerText.length-1))
+    const ops = ['/', '*', '+', '-', '%']
+    del.addEventListener('click', () => {
+        let lastChar = display.innerText.slice(display.innerText.length-1, display.innerText.length)
+        console.log(lastChar)
+        if (ops.includes(lastChar)) {
+            countOperator = false
+        }
+        display.textContent = display.innerText.slice(0, display.innerText.length-1)
+    })
+    
 }
 
-// functioninitOp() {
-//     op
-// }
+function initOp() {
+    const op = document.querySelectorAll('.op')
+    const display = document.querySelector('.display')
+    op.forEach(element => {
+        element.addEventListener('click', () => {
+            if (!countOperator) {
+                display.textContent += element.textContent
+                countOperator = true
+            } else {
+                display.textContent += ''
+            } 
+            
+        })
+    });
+}
 
 
 initNumbers()
 initAC()
 initDel()
+initOp()
