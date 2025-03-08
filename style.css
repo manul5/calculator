@@ -76,3 +76,11 @@ body {
 .op:hover {
     background-color: rgb(148, 147, 147);
 }
+
+.del {
+    background-color: rgb(189, 187, 187);
+}
+
+.del:hover {
+    background-color: rgb(148, 147, 147);
+}
