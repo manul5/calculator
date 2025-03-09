@@ -61,6 +61,10 @@ body {
     font-weight: 600;
 }
 
+#ac:hover {
+    background-color: gainsboro;
+}
+
 #equal {
     background-color: rgb(107, 173, 8);
 }
@@ -83,4 +87,12 @@ body {
 
 .del:hover {
     background-color: rgb(148, 147, 147);
+}
+
+.number:hover {
+    background-color: gainsboro;
+}
+
+#punto:hover {
+    background-color: gainsboro;
 }
