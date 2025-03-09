@@ -25,7 +25,7 @@ function div(a,b) {
 }
 
 function per(a,b) {
-    return a
+    return a * (b / 100)
 }
 
 function countDecimals(value) {
@@ -36,7 +36,7 @@ function countDecimals(value) {
 
 function operate() {
     const display = document.querySelector('.display')
-    secondNumber = parseFloat(display.innerText.slice(opIndex+1, display.innerText.length))
+    secondNumber = Number(display.innerText.slice(opIndex+1, display.innerText.length))
     countOperator = false
     let resultado = 0
     if(operator == '+') {
@@ -51,13 +51,20 @@ function operate() {
         resultado = per(firstNumber, secondNumber)
     }
 
+    console.log(resultado)
+
     let decimals = countDecimals(resultado)
 
-    if (decimals <= 2) {
+    if (decimals != 0) {
+        countPoint = 1
+    }
+
+    if (decimals < 2) {
         display.textContent = resultado
     } else {
         display.textContent = parseFloat(resultado).toFixed(4)
     }
+    
     
     
 }
@@ -81,6 +88,7 @@ function initAC() {
     const display = document.querySelector('.display')
     ac.addEventListener('click', () => {
         countOperator = false
+        countPoint = 0
         display.textContent = ''
     })
 }
@@ -93,6 +101,9 @@ function initDel() {
         let lastChar = display.innerText.slice(display.innerText.length-1, display.innerText.length)
         if (ops.includes(lastChar)) {
             countOperator = false
+        } 
+        if (lastChar == '.') {
+            countPoint--
         }
         display.textContent = display.innerText.slice(0, display.innerText.length-1)
     })
@@ -105,12 +116,12 @@ function initOp() {
     op.forEach(element => {
         element.addEventListener('click', () => {
             if (!countOperator && display.innerText.length < 12) {
-                firstNumber = parseFloat(display.innerText)
+                firstNumber = Number(display.innerText)
                 operator = element.innerText
                 opIndex = display.innerText.length
                 display.textContent += element.textContent
                 countOperator = true
-            } else if(display.innerText.length < 12) {
+            } else if(!countOperator && display.innerText.length < 12) {
                 operate()
             } 
             
@@ -124,9 +135,24 @@ function initEqual() {
     equal.addEventListener('click', operate)
 }
 
+function initPoint() {
+    const point = document.querySelector('#punto')
+    const display = document.querySelector('.display')
+    point.addEventListener('click', () => {
+        if(countPoint < 2 && countOperator == true){
+            display.textContent += point.innerText
+            countPoint++
+        } else if (countPoint < 1) {
+            display.textContent += point.innerText
+            countPoint++
+        }
+    })
+}
+
 
 initNumbers()
 initAC()
 initDel()
 initOp()
 initEqual()
+initPoint()
