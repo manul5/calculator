@@ -74,7 +74,10 @@ function initNumbers() {
     const display = document.querySelector('.display')
     numbers.forEach(element => {
         element.addEventListener('click', () => {
-            if(display.innerText.length < 12) {
+            if(display.innerText.length < 11 && element.innerText == '00') {
+                display.textContent += element.textContent
+            }
+            if(display.innerText.length < 12 && element.innerText != '00') {
                 display.textContent += element.textContent
             } else {
                 display.textContent += ''
