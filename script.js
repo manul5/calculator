@@ -40,26 +40,29 @@ function operate() {
     countOperator = false
     let resultado = 0
     if(operator == '+') {
-        resultado = add(firstNumber, secondNumber)
+        resultado = Number(add(firstNumber, secondNumber))
     } else if (operator == '-') {
-        resultado = res(firstNumber, secondNumber)
+        resultado = Number(res(firstNumber, secondNumber))
     } else if (operator == '*') {
-        resultado = mul(firstNumber, secondNumber)
+        resultado = Number(mul(firstNumber, secondNumber))
     } else if (operator == '/') {
-        resultado = div(firstNumber, secondNumber)
+        resultado = Number(div(firstNumber, secondNumber))
     } else if (operator == '%') {
-        resultado = per(firstNumber, secondNumber)
+        resultado = Number(per(firstNumber, secondNumber))
     }
 
-    console.log(resultado)
+    
 
     let decimals = countDecimals(resultado)
+
+    console.log(resultado)
+    console.log(decimals)
 
     if (decimals != 0) {
         countPoint = 1
     }
 
-    if (decimals < 2) {
+    if (decimals <= 4) {
         display.textContent = resultado
     } else {
         display.textContent = parseFloat(resultado).toFixed(4)
