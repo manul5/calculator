@@ -32,8 +32,8 @@ body {
     height: 480px;
     padding: 25px 15px;
     align-items: center;
-    border: solid rgb(10, 139, 49);
-    border-radius: 20px;
+    border: solid rgb(181, 221, 193);
+    border-radius: 25px;
     gap: 20px;
 }
 
